@@ -1,0 +1,65 @@
+﻿@model ViewModelRepo
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/css/detalhes.css">
+    </head>
+    <body>
+        <header>
+            <div class="center">
+                <img id="logo" src="/img/logo.png" alt="LOGO">
+                <nav>
+                    <ul>
+                        <li>@Html.ActionLink("Meus Repositórios", "Index")</li>
+                        <li><a href="#">Favoritos</a></li>
+                    </ul>
+                    <form class="buscar" action="">
+                        <input class="busca-repositorio" type="text" />
+                        <img class="icone-lupa" src="https://icones.pro/wp-content/uploads/2021/06/icone-loupe-rouge.png" alt="lupa" />
+
+                    </form>
+                </nav>
+            </div>
+        </header>
+        <section class="card">
+            <div class="header-imgs">
+                <a class="favorito" href="#">favoritar</a>
+                <a href="#"><img src="/img/seta.png" alt=""></a>
+            </div>
+            <div class="header-card-detalhes">
+                <div class="titulo-card-detalhes">
+                    <h1>@Html.DisplayFor(model => model.Repositorio.nomeRepositorio)</h1>
+                    <p>por @Html.DisplayFor(model => model.DonoRepositorio.nomeDonoRepositorio)</p>
+                </div>
+
+            </div>
+            <div class="conteudo">
+                <div class="linguagem">
+                    <div class="subtitulo">
+                        <img src="img/linguagemIcone.png" alt="">
+                        <h2>Linguagem</h2>
+                    </div>
+                    <p>desenvolvido em @Html.DisplayFor(model => model.Linguagens.nomeLinguagens)</p>
+                </div>
+                <div class="data">
+                    <div class="subtitulo">
+                        <img src="img/dataIcone.png" alt=""><h2>Última Atualização</h2>
+                    </div>
+                    <p>Realizada em @Html.DisplayFor(model => model.Repositorio.dataUltimaAtt)</p>
+                </div>
+                <div class="descricao">
+                    <div class="subtitulo">
+                        <img src="img/descricaoIcone.png" alt=""><h2>Descrição</h2>
+                    </div>
+                    <p>@Html.DisplayFor(model => model.Repositorio.descricao)</p>
+                </div>
+            </div>
+
+            </div>
+        </section>
+    </body>
+</html>
