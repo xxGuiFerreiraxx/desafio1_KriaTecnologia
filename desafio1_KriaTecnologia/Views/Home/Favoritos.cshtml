@@ -1,9 +1,35 @@
 ﻿@model IEnumerable<ViewModelRepo>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>Desafio 01 - KriaTecnologia</title>
+</head>
+<body>
+    <header>
+        <div class="center">
+            <img id="logo" src="/img/logo.png" alt="LOGO">
+            <nav>
+                <ul>
+                    <li>@Html.ActionLink("Meus Repositórios", "Index")</li>
+                    <li><a asp-action="Favoritos">Favoritos</a></li>
+                </ul>
+                <form class="buscar" action="">
+                    <input class="busca-repositorio" type="text" />
+                    <img class="icone-lupa" src="https://icones.pro/wp-content/uploads/2021/06/icone-loupe-rouge.png" alt="lupa" />
+
+                </form>
+            </nav>
+        </div>
+    </header>
     <main>
         <div class="center-main">
             <div class="topo-main">
-                <h1>Meus repositórios</h1>
-                <a class="btn_NovoRepositorio" @Html.ActionLink("Novo Repositório", "CadastrarRepositorio", "Home")
+                <h1>Favoritos</h1>
             </div>
             <div class="lista-repositorios">
                 @if (Model != null)
@@ -11,13 +37,7 @@
                     foreach (var repositorio in Model)
                     {
                         <div class="" content_list>
-                            <div class="excluir">
-                                <a asp-action="ExcluirRepositorioPeloID" asp-route-id="@repositorio.Repositorio.Id">
-                                    <img src="/img/lixeira.png" alt="lixeira">
-                                    <p>Excluir Repositório</p>
-                                </a>
-                            </div>
-                            <a href="Home/detalhes/@repositorio.Repositorio.Id" class="card-repositorio">
+                            <a href="detalhes/@repositorio.Repositorio.Id" class="card-repositorio">
                                 <div class="cabecalho">
                                     <div class="titulo-cabecalho">
                                         <h2>@repositorio.Repositorio.nomeRepositorio</h2>
@@ -37,9 +57,11 @@
                                     <button>Ver mais</button>
                                 </div>
                             </a>
-                        </div>        
+                        </div>
                     }
                 }
             </div>
         </div>
     </main>
+</body>
+</html>

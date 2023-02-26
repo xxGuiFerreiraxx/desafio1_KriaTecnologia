@@ -10,5 +10,6 @@ namespace desafio1_KriaTecnologia.Models
         public Repositorio Repositorio { get; set; }
         public Linguagens Linguagens { get; set; }
         public DonoRepositorio DonoRepositorio { get; set; }
+        public Favoritos Favoritos { get; set; }
     }
 }

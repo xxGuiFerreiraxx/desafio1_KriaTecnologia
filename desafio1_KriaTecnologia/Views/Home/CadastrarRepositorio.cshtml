@@ -1,8 +1,13 @@
 ﻿@model ViewModelRepo
 @{
-    List<desafio1_KriaTecnologia.Models.Linguagens> listLinguagens = new List<desafio1_KriaTecnologia.Models.Linguagens>();
-    desafio1_KriaTecnologia.Controllers.HomeController h = new desafio1_KriaTecnologia.Controllers.HomeController();
-    listLinguagens = h.SelectTodasLinguagens();
+//List<desafio1_KriaTecnologia.Models.Linguagens> listLinguagens = new List<desafio1_KriaTecnologia.Models.Linguagens>();
+//desafio1_KriaTecnologia.Controllers.HomeController h = new desafio1_KriaTecnologia.Controllers.HomeController();
+//listLinguagens = h.SelectTodasLinguagens();
+
+            List<desafio1_KriaTecnologia.Models.Linguagens> listLinguagens = new List<desafio1_KriaTecnologia.Models.Linguagens>();
+            desafio1_KriaTecnologia.Models.DAO.LinguagensDAO dao = new desafio1_KriaTecnologia.Models.DAO.LinguagensDAO();
+            listLinguagens = dao.SelectTodasLinguagens();
+
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +26,7 @@
             <nav>
                 <ul>
                     <li>@Html.ActionLink("Meus Repositórios", "Index")</li>
-                    <li><a href="#">Favoritos</a></li>
+                    <li><a asp-action="Favoritos">Favoritos</a></li>
                 </ul>
                 <form class="buscar" action="">
                     <input class="busca-repositorio" type="text" />

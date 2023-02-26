@@ -15,7 +15,7 @@
                 <nav>
                     <ul>
                         <li>@Html.ActionLink("Meus Repositórios", "Index")</li>
-                        <li><a href="#">Favoritos</a></li>
+                        <li><a  asp-action="Favoritos">Favoritos</a></li>
                     </ul>
                     <form class="buscar" action="">
                         <input class="busca-repositorio" type="text" />
@@ -27,8 +27,8 @@
         </header>
         <section class="card">
             <div class="header-imgs">
-                <a class="favorito" href="#">favoritar</a>
-                <a href="#"><img src="/img/seta.png" alt=""></a>
+                <a class="favorito" asp-action="FavoritarRepositorioPeloID" asp-route-id="@Model.Repositorio.Id">Favoritar</a>
+                 <a href="#"><img src="/img/seta.png" alt=""></a>
             </div>
             <div class="header-card-detalhes">
                 <div class="titulo-card-detalhes">
