@@ -1,25 +1,16 @@
-﻿@*<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]  desafio1_KriaTecnologia</title>
-    <link href="~/css/index.css" rel="stylesheet" />
-</head>
-<body>
-     @RenderBody()
-</body>
-</html>
-*@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebApplication1</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
+   <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/css/cadastro.css">
+        <link rel="stylesheet" type="text/css" href="/css/detalhes.css">
+        <link rel="stylesheet" type="text/css" href="/css/index.css"> 
+        <link rel="stylesheet" type="text/css" href="/css/linguagem.css"> 
+        <title>Desafio 01 - KriaTecnologia</title>
+    </head>
 </head>
 <body>
     <header>
@@ -27,22 +18,33 @@
             <img id="logo" src="/img/logo.png" alt="LOGO">
             <nav>
                 <ul>
-                    <li>@Html.ActionLink("Meus Repositórios", "Index")</li>
-                    <li><a asp-action="Favoritos">Favoritos</a></li>
+                    <li>@Html.ActionLink("Meus Repositórios", "Index", "Home")</li>
+                    <li><a asp-controller="Home" asp-action="Favoritos">Favoritos</a></li>
                 </ul>
-                <form class="buscar" action="">
-                    <input class="busca-repositorio" type="text" />
-                    <img class="icone-lupa" src="https://icones.pro/wp-content/uploads/2021/06/icone-loupe-rouge.png" alt="lupa" />
+                <form class="buscar" asp-action="Index">
+                    <input name="queryString" class="busca-repositorio" type="text" />
+                    <img class="icone-lupa" id="btnSubmit" src="https://icones.pro/wp-content/uploads/2021/06/icone-loupe-rouge.png" alt="lupa" />
 
                 </form>
             </nav>
         </div>
     </header>
+
     @RenderBody()
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    @section scripts{
+        <script>
+            $(function ()){
+                $("#btnSubmit").click(function (){
+                    $("Form").submit();
+                })
+            });
+        </script>        
+    }
 </body>
 </html>

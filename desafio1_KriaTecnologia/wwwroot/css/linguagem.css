@@ -1,0 +1,105 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.cad_linguagem {
+    height:100%;
+    background-image: url(/img/bg_linguagem.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: -20px;
+}
+
+.card-linguagem {
+    position: relative;
+    margin: 130px auto;
+    width: 70%;
+    height: auto;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 40px 10px rgba(255, 255, 255, 0.25);
+    border-radius: 5px;
+    padding: 60px 40px;
+    font-family: 'Poppins';
+    display: flex;
+    flex-direction: column;
+    transition: 300ms ease-in-out;
+    text-align: center;
+}
+
+.header-card-detalhes {
+    width: 100%;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 50PX;
+}
+
+.form {
+    width: 100%;
+    margin: 0 30px 0 30px;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .form p {
+        font-family: 'Poppins';
+        color: #C5C5C5;
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        margin: 0 85px 0 85px;
+    }
+
+        .form p input, select, textarea {
+            margin-bottom: 20px;
+        }
+
+.input_data {
+    width: 100%;
+}
+
+    .input_data input {
+        height: 30px;
+        left: 60px;
+        top: 299px;
+        padding: 0 10px 0 10px;
+        border: 1px solid #C5C5C5;
+        border-radius: 5px;
+        resize: none;
+        font-family: 'Poppins';
+    }
+
+.buttons {
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+    .buttons input {
+        width: 180px;
+        height: 45px;
+        border: none;
+        border-radius: 8px;
+        font-family: 'Poppins';
+        font-weight: 800;
+        color: #C5C5C5;
+        background: #238636;
+        transition: 400ms ease-in-out;
+    }
+
+.limpar:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    background: #207932;
+}
+
+.buttons input:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    background: #207932;
+}

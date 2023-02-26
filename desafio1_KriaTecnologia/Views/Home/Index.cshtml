@@ -1,45 +1,56 @@
 ﻿@model IEnumerable<ViewModelRepo>
-    <main>
-        <div class="center-main">
-            <div class="topo-main">
-                <h1>Meus repositórios</h1>
-                <a class="btn_NovoRepositorio" @Html.ActionLink("Novo Repositório", "CadastrarRepositorio", "Home")
-            </div>
-            <div class="lista-repositorios">
-                @if (Model != null)
-                {
-                    foreach (var repositorio in Model)
-                    {
-                        <div class="" content_list>
-                            <div class="excluir">
-                                <a asp-action="ExcluirRepositorioPeloID" asp-route-id="@repositorio.Repositorio.Id">
-                                    <img src="/img/lixeira.png" alt="lixeira">
-                                    <p>Excluir Repositório</p>
-                                </a>
-                            </div>
-                            <a href="Home/detalhes/@repositorio.Repositorio.Id" class="card-repositorio">
-                                <div class="cabecalho">
-                                    <div class="titulo-cabecalho">
-                                        <h2>@repositorio.Repositorio.nomeRepositorio</h2>
-                                        <p>@repositorio.Repositorio.dataUltimaAtt</p>
-                                    </div>
-                                    <div class="coluna-linguagem">
-                                        <div class="circle"></div> <p>@repositorio.Linguagens.nomeLinguagens</p>
-                                    </div>
-                                </div>
-                                <div class="content-card">
-                                    <div class="corpo-repositorio">
-                                        <p>@repositorio.Repositorio.descricao</p>
-                                    </div>
-                                    <p class="dono-repositorio">por @repositorio.DonoRepositorio.nomeDonoRepositorio</p>
-                                </div>
-                                <div class="footer-repositorio">
-                                    <button>Ver mais</button>
-                                </div>
-                            </a>
-                        </div>        
-                    }
-                }
-            </div>
+
+
+<main>
+    <div class="center-main">
+        <div class="topo-main">
+            <h1>Meus repositórios</h1>
+            @Html.ActionLink("Novo Repositório", "CadastrarRepositorio", "Home", null, new { @class = "btn_NovoRepositorio" })
         </div>
-    </main>
+        <div class="lista-repositorios">
+            @if (Model != null)
+            {
+                foreach (var repositorio in Model)
+                {
+                    <div class="content_list">
+                        <div class="excluir">
+                            <a asp-action="ExcluirRepositorioPeloID" asp-route-id="@repositorio.Repositorio.Id">
+                                <img src="/img/lixeira.png" alt="lixeira">
+                                <p>Excluir Repositório</p>
+                            </a>
+                        </div>
+                        <a href="Home/detalhes/@repositorio.Repositorio.Id" class="card-repositorio">
+                            <div class="cabecalho">
+                                <div class="titulo-cabecalho">
+                                    <h2>@repositorio.Repositorio.nomeRepositorio</h2>
+                                    <p>@repositorio.Repositorio.dataUltimaAtt</p>
+                                </div>
+                                <div class="coluna-linguagem">
+                                    <div class="circle"></div> <p>@repositorio.Linguagens.nomeLinguagens</p>
+                                </div>
+                            </div>
+                            <div class="content-card">
+                                <div class="corpo-repositorio">
+                                    <p>@repositorio.Repositorio.descricao</p>
+                                </div>
+                                <p class="dono-repositorio">por @repositorio.DonoRepositorio.nomeDonoRepositorio</p>
+                            </div>
+                            <div class="footer-repositorio">
+                                <button>Ver mais</button>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+            @TempData["NullMessage"]
+        </div>
+        <div class="excluir-todos-repositorio">
+            <a asp-action="ExcluirTodosRepositorios">
+                <img src="/img/lixeira.png" alt="lixeira">
+                <p>Excluir todos os Repositório</p>
+            </a>
+        </div>
+    </div>
+</main>
+
+                            

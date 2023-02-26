@@ -1,0 +1,24 @@
+﻿@model Linguagens
+<main class="cad_linguagem">
+    <section class="card-linguagem">
+
+        <div class="header-card-detalhes">
+            <div class="titulo-card-detalhes">
+                <h1>CADASTRE UMA LINGUAGEM</h1>
+            </div>
+        </div>
+        <div class="forms">
+            <form class="form" method="post" action="#">
+                <div class="input_data">
+                    <p>
+                        <label for="nomeRepositorio">Nome da Linguagem</label>
+                        @Html.EditorFor(model => model.nomeLinguagens)
+                    </p>
+                </div>
+                <div class="buttons">
+                    <input type="submit" value="Cadastrar">
+                </div>
+            </form>
+        </div>
+    </section>
+</main>

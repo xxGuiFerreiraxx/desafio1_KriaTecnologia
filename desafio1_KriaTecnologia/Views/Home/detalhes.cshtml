@@ -1,34 +1,8 @@
 ﻿@model ViewModelRepo
-
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="/css/detalhes.css">
-    </head>
-    <body>
-        <header>
-            <div class="center">
-                <img id="logo" src="/img/logo.png" alt="LOGO">
-                <nav>
-                    <ul>
-                        <li>@Html.ActionLink("Meus Repositórios", "Index")</li>
-                        <li><a  asp-action="Favoritos">Favoritos</a></li>
-                    </ul>
-                    <form class="buscar" action="">
-                        <input class="busca-repositorio" type="text" />
-                        <img class="icone-lupa" src="https://icones.pro/wp-content/uploads/2021/06/icone-loupe-rouge.png" alt="lupa" />
-
-                    </form>
-                </nav>
-            </div>
-        </header>
         <section class="card">
             <div class="header-imgs">
                 <a class="favorito" asp-action="FavoritarRepositorioPeloID" asp-route-id="@Model.Repositorio.Id">Favoritar</a>
-                 <a href="#"><img src="/img/seta.png" alt=""></a>
+                 <a asp-action="Index"><img src="/img/seta.png" alt=""></a>
             </div>
             <div class="header-card-detalhes">
                 <div class="titulo-card-detalhes">
@@ -61,5 +35,3 @@
 
             </div>
         </section>
-    </body>
-</html>

@@ -1,41 +1,10 @@
 ﻿@model ViewModelRepo
 @{
-//List<desafio1_KriaTecnologia.Models.Linguagens> listLinguagens = new List<desafio1_KriaTecnologia.Models.Linguagens>();
-//desafio1_KriaTecnologia.Controllers.HomeController h = new desafio1_KriaTecnologia.Controllers.HomeController();
-//listLinguagens = h.SelectTodasLinguagens();
-
-            List<desafio1_KriaTecnologia.Models.Linguagens> listLinguagens = new List<desafio1_KriaTecnologia.Models.Linguagens>();
-            desafio1_KriaTecnologia.Models.DAO.LinguagensDAO dao = new desafio1_KriaTecnologia.Models.DAO.LinguagensDAO();
-            listLinguagens = dao.SelectTodasLinguagens();
+    List<desafio1_KriaTecnologia.Models.Linguagens> listLinguagens = new List<desafio1_KriaTecnologia.Models.Linguagens>();
+    desafio1_KriaTecnologia.Models.DAO.LinguagensDAO dao = new desafio1_KriaTecnologia.Models.DAO.LinguagensDAO();
+    listLinguagens = dao.SelectTodasLinguagens();
 
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/cadastro.css">
-    <title>Cadastro de Repositório</title>
-
-</head>
-<body>
-    <header>
-        <div class="center">
-            <img id="logo" src="/img/logo.png" alt="LOGO">
-            <nav>
-                <ul>
-                    <li>@Html.ActionLink("Meus Repositórios", "Index")</li>
-                    <li><a asp-action="Favoritos">Favoritos</a></li>
-                </ul>
-                <form class="buscar" action="">
-                    <input class="busca-repositorio" type="text" />
-                    <img class="icone-lupa" src="https://icones.pro/wp-content/uploads/2021/06/icone-loupe-rouge.png" alt="lupa" />
-
-                </form>
-            </nav>
-        </div>
-    </header>
     <section class="main">
         <div class="formulario">
             <h1>Cadastre um repositório</h1>
@@ -43,42 +12,40 @@
                 <div class="input_data">
                     <p>
                         <label for="nomeRepositorio">Nome do Repositório</label>
-                        @Html.EditorFor(model => model.Repositorio.nomeRepositorio) 
+                        @Html.EditorFor(model => model.Repositorio.nomeRepositorio)
+                        @Html.ValidationMessageFor(model => model.Repositorio.nomeRepositorio)
 
                     </p>
                     <p>
                         <label for="descricao">Descrição</label>
                         @Html.TextAreaFor(model => model.Repositorio.descricao)
-<p>
+                    <p>
                         <label for="nomeLinguagens">Linguagem</label>
                         <select @Html.EditorFor(model => model.Linguagens.nomeLinguagens)>
-                             <option value="" disabled selected>Selecione uma linguagem</option>
-                                @foreach (var itemlinguagem in listLinguagens)
-                                {
-                                    <option value="@itemlinguagem.nomeLinguagens">@itemlinguagem.nomeLinguagens</option>
-                                }
-                            @*<option value="C#">C#</option>
-                            <option value="Java">Java</option>
-                            <option value="Dart">Dart</option>
-                            <option value="PhP">PhP</option>*@
+                            <option value="" disabled selected>Selecione uma linguagem</option>
+                            @foreach (var itemlinguagem in listLinguagens)
+                            {
+                                <option value="@itemlinguagem.nomeLinguagens">@itemlinguagem.nomeLinguagens</option>
+                            }
                         </select>
+                        <a asp-controller="Linguagens" asp-action="Linguagem">Cadastrar nova linguagem</a>
                     </p>
-                        <p>
+                    <p>
                         <label for="data">Data</label>
                         @Html.EditorFor(model => model.Repositorio.dataUltimaAtt)
+                        @Html.ValidationMessageFor(model => model.Repositorio.dataUltimaAtt)
                     </p>
-                        <p>
+                    <p>
                         <label for="dono">Dono do Repositório</label>
-                          @Html.EditorFor(model => model.DonoRepositorio.nomeDonoRepositorio)
+                        @Html.EditorFor(model => model.DonoRepositorio.nomeDonoRepositorio)
+                        @Html.ValidationMessageFor(model => model.DonoRepositorio.nomeDonoRepositorio)
                     </p>
-</div>
+                </div>
                 <div class="buttons">
-                    <a class="limpar" href="#">Limpar</a>
+                    <input type="reset" class="limpar" value="Limpar">
                     <input type="submit" value="Cadastrar">
                 </div>
             </form>
         </div>
         <div class="imagem_bg"></div>
     </section>
-</body>
-</html>

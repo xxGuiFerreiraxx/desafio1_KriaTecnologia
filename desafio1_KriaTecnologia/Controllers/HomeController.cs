@@ -17,14 +17,31 @@ namespace desafio1_KriaTecnologia.Controllers
     public class HomeController : Controller
     {
 
-        public IActionResult Index()
+        public IActionResult Index(string queryString)
         {
             RepositorioDAO dao = new RepositorioDAO();
-            var listRepositorios = dao.SelectTodosRepositorios();
+            var listRepositorios = new List<ViewModelRepo>();
+            TempData["NullMessage"] = null;
+
+            if (String.IsNullOrEmpty(queryString))
+            {
+
+                listRepositorios = dao.SelectTodosRepositorios();
+                if (listRepositorios.Count == 0)              
+                    TempData["NullMessage"] = "Nenhum resultado encontrado :( Cadastre um novo repositório!";
+                
+            }
+            else
+            {
+                listRepositorios = dao.SelectPesquisaRepositorios(queryString);
+
+                if(listRepositorios.Count == 0)
+                    TempData["NullMessage"] = "Nenhum resultado encontrado :(";
+               
+            }
             return View(listRepositorios);
         }
 
-        //[Route("detalhes/{id?}")]
         public IActionResult detalhes(int Id)
         {
             RepositorioDAO dao = new RepositorioDAO();
@@ -46,7 +63,13 @@ namespace desafio1_KriaTecnologia.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-      
+        public IActionResult ExcluirTodosRepositorios()
+        {
+            RepositorioDAO dao = new RepositorioDAO();
+            dao.DeleteTodosRepositorios();
+            return RedirectToAction("Index", "Home");
+        }
+
         public IActionResult ExcluirRepositorioPeloID(int id)
         {
             RepositorioDAO dao = new RepositorioDAO();
@@ -58,6 +81,10 @@ namespace desafio1_KriaTecnologia.Controllers
         {
             RepositorioDAO dao = new RepositorioDAO();
             var listRepositoriosFavoritados = dao.SelectTodosRepositoriosFavoritados();
+
+            if (listRepositoriosFavoritados.Count == 0)
+                TempData["NullMessage"] = "Nenhum resultado encontrado :(";
+
             return View(listRepositoriosFavoritados);
         }
 

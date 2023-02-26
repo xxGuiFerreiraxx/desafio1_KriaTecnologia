@@ -27,8 +27,19 @@ namespace desafio1_KriaTecnologia.Models.DAO
                 
                 command.ExecuteNonQuery();
             }
-        }   
-        
+        }
+
+        public void DeleteTodosRepositorios()
+        {
+            string deleteQuery = String.Format("Exec DeletarAll;");
+
+            using (db = new ApplicationDbContext())
+            {
+               
+                db.CommandExecuter(deleteQuery);
+            }
+        }
+
         public void DeleteRepositorio(int id)
         {
             string deleteQuery = String.Format("Exec Deletar '{0}'", id);
@@ -47,6 +58,16 @@ namespace desafio1_KriaTecnologia.Models.DAO
             }
         }
 
+        public List<ViewModelRepo> SelectTodosRepositorios() 
+        {
+            using (db = new ApplicationDbContext())
+            {
+                string selectQuery = "Select r.Id, r.nomeRepositorio, r.dataUltimaAtt, r.descricao, d.nomeDonoRepositorio, l.nomeLinguagens from tb_Repositorios as r join tb_DonoRepositorio as d on r.idDonoRepositorio = d.Id join tb_linguagens as l on r.idLinguagem = l.Id order by r.Id desc;";
+                var leitor = db.CommandRetuner(selectQuery);
+                return ConvertReaderToListRepositorio(leitor);
+            }
+        }
+
         public List<ViewModelRepo> SelectTodosRepositoriosFavoritados()
         {
             using (db = new ApplicationDbContext())
@@ -57,11 +78,11 @@ namespace desafio1_KriaTecnologia.Models.DAO
             }
         }
 
-        public List<ViewModelRepo> SelectTodosRepositorios() 
+        public List<ViewModelRepo> SelectPesquisaRepositorios(string search)
         {
             using (db = new ApplicationDbContext())
             {
-                string selectQuery = "Select r.Id, r.nomeRepositorio, r.dataUltimaAtt, r.descricao, d.nomeDonoRepositorio, l.nomeLinguagens from tb_Repositorios as r join tb_DonoRepositorio as d on r.idDonoRepositorio = d.Id join tb_linguagens as l on r.idLinguagem = l.Id order by r.Id desc;";
+                string selectQuery = String.Format("Select r.Id, r.nomeRepositorio, r.dataUltimaAtt, r.descricao, d.nomeDonoRepositorio, l.nomeLinguagens from tb_Repositorios as r join tb_DonoRepositorio as d on r.idDonoRepositorio = d.Id join tb_linguagens as l on r.idLinguagem = l.Id where r.nomeRepositorio like '%{0}%' or l.nomeLinguagens like '%{0}%' ;", search);
                 var leitor = db.CommandRetuner(selectQuery);
                 return ConvertReaderToListRepositorio(leitor);
             }

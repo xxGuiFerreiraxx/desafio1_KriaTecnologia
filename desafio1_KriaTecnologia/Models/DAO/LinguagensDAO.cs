@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,18 @@ namespace desafio1_KriaTecnologia.Models.DAO
     public class LinguagensDAO
     {
         private ApplicationDbContext db;
+
+        public void InsertLinguagem(Linguagens linguagens)
+        {
+            using (db = new ApplicationDbContext())
+            {
+                string insertQuery = String.Format("INSERT INTO tb_linguagens VALUES (@nomeLinguagem)");
+                SqlCommand command = new SqlCommand(insertQuery, db.connection);
+                command.Parameters.Add("@nomeLinguagem", SqlDbType.VarChar).Value = linguagens.nomeLinguagens;
+
+                command.ExecuteNonQuery();
+            }
+        }
 
         public List<Linguagens> SelectTodasLinguagens()
         {
