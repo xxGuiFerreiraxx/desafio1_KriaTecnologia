@@ -12,13 +12,9 @@ namespace desafio1_KriaTecnologia.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Digite o nome do Repositório")]
-        [MaxLength(10, ErrorMessage = "O nome deve conter no máximo 10 caracteres")]
 
         public string nomeRepositorio { get; set; }
 
-        [Required(ErrorMessage = "Digite uma descrição para o seu repositório")]
-        [MaxLength(10, ErrorMessage = "O nome deve conter no máximo 30 caracteres")]
         public string descricao { get; set; }
         [Required(ErrorMessage = "Indique a data da última atualização")]
         public DateTime dataUltimaAtt { get; set; }
